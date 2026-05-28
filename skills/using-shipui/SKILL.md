@@ -1,6 +1,6 @@
 ---
 name: using-shipui
-description: Use when starting any conversation — primes Claude to recognize web/UI work and reach for the shipui workflow automatically. Auto-injected at session start.
+description: Use when starting any conversation that involves web UI, frontend, design, landing pages, dashboards, components, SaaS, e-commerce, .tsx, .html, Next.js, React, Tailwind, shadcn, Motion — primes Claude to reach for the shipui:shipui workflow automatically. Auto-injected at session start via SessionStart hook.
 ---
 
 <SUBAGENT-STOP>
