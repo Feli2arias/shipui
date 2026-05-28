@@ -1,15 +1,20 @@
 {
   "name": "shipui",
+  "description": "Opinionated web design and frontend playbook for Claude Code. Ships production-grade web UI with Next.js + Tailwind v4 + shadcn/ui + Motion.",
   "owner": {
     "name": "Felipe Arias",
-    "url": "https://github.com/feli2arias"
+    "email": "feli24arias06@gmail.com"
   },
   "plugins": [
     {
       "name": "shipui",
-      "source": ".",
-      "description": "Opinionated web design and frontend skill — ships production-grade web UI with Next.js + Tailwind v4 + shadcn/ui + Motion.",
+      "description": "Opinionated web design and frontend skill — ships production-grade web UI with Next.js + Tailwind v4 + shadcn/ui + Motion. Enforces a 10-step workflow with 5 non-negotiable QA gates. Auto-activates on any web/UI work via SessionStart hook.",
       "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "Felipe Arias",
+        "email": "feli24arias06@gmail.com"
+      },
       "category": "frontend",
       "tags": ["ui", "ux", "design", "frontend", "nextjs", "tailwind", "shadcn", "motion"]
     }
