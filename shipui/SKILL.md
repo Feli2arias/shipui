@@ -19,7 +19,7 @@ description: Opinionated web design and frontend skill — ships production-grad
 | UI runtime | React 19 |
 | Styling | Tailwind CSS v4 (tokens via `@theme`) |
 | Components | shadcn/ui (built on Radix) |
-| Motion | Motion (motion.dev — successor to framer-motion) |
+| Motion | Motion (motion.dev — the rebranded continuation of Framer Motion) |
 | Icons | Lucide React |
 | Forms | React Hook Form + Zod |
 | Data | Supabase |
@@ -121,7 +121,7 @@ Before adding any animation, answer:
 Animate only `transform` and `opacity`. Never `width`, `height`, `margin`, `padding`, `top`, `left` — they trigger layout reflow. Linear easing is forbidden (mechanical). Use `ease-out` for enter, `ease-in` for exit.
 
 ### 9. QA pass
-**Load:** `references/pre-delivery-checklist.md`
+**Load:** `references/08-accessibility.md`, `references/09-performance.md`, `references/pre-delivery-checklist.md`
 
 Run the checklist. **Every box must be checked.** If any item fails, go back to the relevant workflow step. No exceptions.
 
