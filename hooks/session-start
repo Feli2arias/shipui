@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# SessionStart hook for shipui plugin.
+# Injects the using-shipui manifesto so Claude knows the skill is available
+# and uses it proactively on web/UI work — no explicit invocation required.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+using_shipui_content=$(cat "${PLUGIN_ROOT}/skills/using-shipui/SKILL.md" 2>&1 || echo "Error reading using-shipui skill")
+
+# Escape string for JSON embedding via bash parameter substitution (no per-char loops)
+escape_for_json() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/\\n}"
+  s="${s//$'\r'/\\r}"
+  s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+
+using_shipui_escaped=$(escape_for_json "$using_shipui_content")
+
+session_context="<EXTREMELY_IMPORTANT>\nYou have the shipui plugin installed.\n\n**Below is the full content of the 'shipui:using-shipui' skill — your introduction to shipui. For the full workflow, use the 'Skill' tool to invoke 'shipui:shipui'.**\n\n${using_shipui_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# Emit context-injection JSON in the format the current harness expects
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  printf '{\n  "additional_context": "%s"\n}\n' "$session_context"
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context"
+else
+  printf '{\n  "additionalContext": "%s"\n}\n' "$session_context"
+fi
+
+exit 0

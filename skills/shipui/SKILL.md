@@ -1,6 +1,6 @@
 ---
 name: shipui
-description: Opinionated web design and frontend skill — ships production-grade interfaces with Next.js + Tailwind v4 + shadcn/ui + Motion. Enforces a 10-step workflow (brief, aesthetic direction, brand inspiration, design tokens, component scout, contract, implementation, motion, QA, polish). Use when building, designing, reviewing, or refactoring web UI — landing pages, dashboards, components, SaaS, e-commerce, admin panels, portfolios, blogs. Web-only — for mobile UI, use platform-specific skills.
+description: Use PROACTIVELY when building, designing, reviewing, or refactoring any web UI — landing pages, dashboards, components, SaaS, e-commerce, admin panels, portfolios, blogs, marketing sites, .tsx, .jsx, .html. Opinionated production playbook for Next.js + Tailwind v4 + shadcn/ui + Motion. Enforces a 10-step workflow with 5 non-negotiable gates (tokens, scout, contract, motion check, QA). Web-only — for iOS/Android/Vue/Svelte use platform-specific skills.
 ---
 
 # shipui

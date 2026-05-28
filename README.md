@@ -1,8 +1,8 @@
 # shipui
 
-> An opinionated web design and frontend skill for [Claude Code](https://claude.com/claude-code). Ships production-grade interfaces with Next.js + Tailwind v4 + shadcn/ui + Motion.
+> A [Claude Code](https://claude.com/claude-code) **plugin** that ships production-grade web interfaces. Next.js + Tailwind v4 + shadcn/ui + Motion. Ten steps, five non-negotiable gates, zero AI-slop aesthetics.
 
-shipui is the **production playbook**: a 10-step workflow that takes a brief from "build me a landing page" to "shipped, accessible, performant, and memorable."
+shipui is the **production playbook** for shipping web UI with Claude Code. It auto-activates on any web/UI work — no `/skill` command needed — and walks Claude through a 10-step workflow from brief to ship.
 
 If [`frontend-design`](https://github.com/anthropics/claude-code) is the aesthetic muse that says *"commit to a bold direction"*, shipui is the playbook that says *"now ship it with tokens, contracts, motion discipline, and a QA gate you can't skip."*
 
@@ -10,64 +10,91 @@ If [`frontend-design`](https://github.com/anthropics/claude-code) is the aesthet
 
 ## What you get
 
-**A 10-step workflow** enforced every time the skill is invoked:
+**Two skills** in one plugin:
 
-1. **Brief** — extract product, audience, tone, constraints
-2. **Aesthetic direction** — commit to one bold direction (no hedging)
-3. **Brand inspiration** — pick from 58 curated brand specs
-4. **Design tokens** — full token set BEFORE any component code
-5. **Component scout** — search shadcn / Radix / 21st.dev / Aceternity before building
-6. **Component contracts** — props, states, a11y, responsive defined upfront
-7. **Implementation** — Tailwind v4 + shadcn idioms, zero hardcoded values
-8. **Motion layer** — purposeful animations with reduced-motion fallbacks
-9. **QA pass** — non-negotiable pre-delivery checklist
-10. **Polish** — distinctive details that make it memorable
+| Skill | Purpose |
+|---|---|
+| `shipui:using-shipui` | Auto-injected at session start. Tells Claude when to reach for the workflow. |
+| `shipui:shipui` | The full 10-step workflow + 61-rule pre-delivery checklist. |
 
-**An opinionated stack** — Next.js (App Router), React 19, Tailwind v4, shadcn/ui, Motion (motion.dev), Lucide React, React Hook Form + Zod, Supabase, Vercel. shipui doesn't ask "what framework?" — it ships.
+**A SessionStart hook** that injects the manifesto on every new session — so Claude knows shipui exists and will use it proactively the moment you ask for UI work.
 
-**A pre-delivery checklist** that covers visual quality, design tokens, light/dark mode, responsive behavior, interaction feedback, motion discipline, WCAG AA accessibility, and Core Web Vitals performance.
+**An opinionated stack**: Next.js (App Router) · React 19 · Tailwind v4 · shadcn/ui · Motion · Lucide · React Hook Form + Zod · Supabase · Vercel · next/font.
 
----
-
-## Who it's for
-
-- Freelancers shipping client web work who want a consistent, high-quality output without re-deciding the stack every project.
-- Solo founders building SaaS / e-commerce / landing pages who want production-grade UI without a designer.
-- Agencies wanting a shared playbook so every developer ships the same caliber of work.
-- Anyone tired of "AI-generated" aesthetics that all look the same.
-
-If you want to use Vue, Svelte, Remix, or any non-React stack — shipui is not for you. The opinion is the product.
+**A pre-delivery checklist** covering visual quality, design tokens, light/dark mode, responsive behavior, interaction feedback, motion discipline, WCAG AA accessibility, and Core Web Vitals.
 
 ---
 
 ## Install
 
-### Option 1 — Copy into your Claude Code skills
+### Recommended — as a Claude Code plugin
 
 ```bash
-cp -r shipui ~/.claude/skills/
+# Inside Claude Code, run:
+/plugin marketplace add feli2arias/shipui
+/plugin install shipui
 ```
 
-Restart Claude Code. Invoke with: *"use the shipui skill to build a landing page for X"*.
+Restart Claude Code. From the next session, shipui auto-activates on any web/UI request — no explicit invocation needed.
 
-### Option 2 — Install as a plugin
+### Alternative — raw git clone
 
-*(Coming soon)*
+```bash
+git clone https://github.com/feli2arias/shipui.git ~/.claude/plugins/shipui
+```
+
+Then restart Claude Code. The plugin is discovered automatically.
+
+---
+
+## How it works
+
+When you start a session, the `SessionStart` hook fires and injects the `using-shipui` manifesto into Claude's context. The manifesto tells Claude:
+
+> *If there is even a 1% chance the user's request involves building, designing, reviewing, or shipping any web UI, you MUST invoke `shipui:shipui` before writing a single line of code.*
+
+So when you say *"build me a landing page for X"*, Claude doesn't write generic SaaS-template code. It calls `shipui:shipui`, gets the 10-step workflow, commits to an aesthetic direction, defines tokens, scouts components, writes contracts, implements with Tailwind v4 + shadcn idioms, layers in motion with reduced-motion gates, runs the 61-rule QA checklist — and only then ships.
+
+---
+
+## The 10-step workflow
+
+1. **Brief** — product, audience, tone, constraints (3 sentences max)
+2. **Aesthetic direction** — commit to one bold direction; no AI-slop
+3. **Brand inspiration** — 58 brand specs or justify going from scratch
+4. **Design tokens** — full token set BEFORE any component code ★
+5. **Component scout** — shadcn → Radix → 21st.dev → Aceternity → scratch ★
+6. **Component contracts** — props · variants · states · a11y · responsive ★
+7. **Implementation** — Tailwind v4 + shadcn idioms, zero hardcoded values
+8. **Motion layer** — purposeful, with reduced-motion fallbacks ★
+9. **QA pass** — 61-rule pre-delivery checklist, no exceptions ★
+10. **Polish** — one memorable detail beats five forgettable
+
+★ = non-negotiable
+
+---
+
+## Who it's for
+
+- Freelancers shipping client web work who want consistent, high-quality output without re-deciding the stack every project
+- Solo founders building SaaS / e-commerce / landing pages who want production-grade UI without a designer
+- Agencies wanting a shared playbook so every developer ships the same caliber
+- Anyone tired of "AI-generated" aesthetics that all look the same
+
+If you want Vue / Svelte / Remix / mobile — shipui isn't for you. The opinion is the product.
 
 ---
 
 ## Status
 
-**v0.1 — Foundation.** Installable. SKILL.md with full 10-step workflow. Pre-delivery checklist gate.
+**v1.0 — Plugin foundation.** SessionStart hook · `using-shipui` manifesto · `shipui` 10-step workflow · pre-delivery checklist. Auto-activation works.
 
 **Coming next:**
-- v0.2 — Design tokens + component scout + component contract references
-- v0.3 — Motion + accessibility + performance references
-- v0.4 — Aesthetic direction + brand inspiration + styles catalog references
-- v0.5 — Python search & lint tooling (`scripts/search.py`, `scripts/check.py`)
-- v1.0 — Plugin packaging, public release
-
-See `docs/superpowers/specs/2026-05-27-shipui-design.md` for the full design spec.
+- v1.1 — Deep reference files (design tokens spec, component scout, contracts)
+- v1.2 — Motion + accessibility + performance references
+- v1.3 — Aesthetic direction + brand inspiration + 60+ styles catalog
+- v1.4 — Python search & lint tooling
+- v2.0 — Marketplace listing, plugin packaging polish
 
 ---
 
