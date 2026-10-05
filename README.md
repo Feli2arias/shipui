@@ -27,23 +27,22 @@ If [`frontend-design`](https://github.com/anthropics/claude-code) is the aesthet
 
 ## Install
 
-### Recommended — as a Claude Code plugin
+shipui is a plugin (skills + a SessionStart hook), so it is installed through the Claude Code plugin system rather than by copying a single `SKILL.md`.
 
 ```bash
 # Inside Claude Code, run:
-/plugin marketplace add feli2arias/shipui
-/plugin install shipui
+/plugin marketplace add Feli2arias/shipui
+/plugin install shipui@shipui
 ```
 
 Restart Claude Code. From the next session, shipui auto-activates on any web/UI request — no explicit invocation needed.
 
-### Alternative — raw git clone
+**Try it locally without installing** (from a clone of this repo):
 
 ```bash
-git clone https://github.com/feli2arias/shipui.git ~/.claude/plugins/shipui
+git clone https://github.com/Feli2arias/shipui.git
+claude --plugin-dir ./shipui
 ```
-
-Then restart Claude Code. The plugin is discovered automatically.
 
 ---
 
